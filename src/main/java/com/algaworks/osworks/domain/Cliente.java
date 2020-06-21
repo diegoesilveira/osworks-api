@@ -18,12 +18,10 @@ public class Cliente {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotBlank
 	@Size(min = 3, max = 60)
 	@NotNull(message = "Favor preencher o campo nome")
 	private String nome;
 
-	@NotBlank
 	@Size(min = 11, max = 20)
 	@NotNull(message = "Favor preencher o campo Telefone")
 	private String telefone;
