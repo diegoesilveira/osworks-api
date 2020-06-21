@@ -54,13 +54,12 @@ public class ClienteResource {
 //		return ResponseEntity.ok(cliente);
 //	}
 //	
-//	@DeleteMapping(value ="/{id}")
-//	public ResponseEntity<Void> delete(@PathVariable Long id){
-//		if(!repository.existsById(id)) {
-//			return ResponseEntity.notFound().build();
-//		}
-//		repository.deleteById(id);
-//		return ResponseEntity.noContent().build();
-//	}
-//		
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Void> delete(@PathVariable Long id){
+		service.delete(id);
+		return ResponseEntity.noContent().build();
+	}
+	
+	
+		
 }

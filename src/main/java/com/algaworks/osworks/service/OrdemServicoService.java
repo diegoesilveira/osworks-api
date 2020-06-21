@@ -28,10 +28,10 @@ public class OrdemServicoService {
 	
 	
 	public OrdemServico criar(OrdemServico ordemServico) {
-		Cliente obj = clienteRepository.findById(ordemServico.getCliente().getId())
+		Cliente cliente = clienteRepository.findById(ordemServico.getCliente().getId())
 				.orElseThrow(() -> new ObjectNotFoundException("Cliente não encontrado!"));
 		
-		
+		ordemServico.setCliente(cliente);
 		ordemServico.setStatus(StatusOrdemServico.ABERTA);
 		ordemServico.setDataAbertura(LocalDateTime.now());
 		
