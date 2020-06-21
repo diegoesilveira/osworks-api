@@ -42,4 +42,11 @@ public class OrdemServicoService {
 		return repository.findAll();
 		
 	}
+	
+	
+	public OrdemServico findById(Long id) {
+		Optional<OrdemServico> obj = repository.findById(id);
+		
+		return obj.orElseThrow(() -> new ObjectNotFoundException("Ordem de Serviço não encontrada! " + id));
+	}
 }

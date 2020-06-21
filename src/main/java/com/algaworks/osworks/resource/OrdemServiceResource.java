@@ -7,6 +7,8 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,5 +37,12 @@ public class OrdemServiceResource {
 		List<OrdemServico> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
+	
+	@RequestMapping(value="/{id}", method = RequestMethod.GET)
+	public ResponseEntity<OrdemServico> findById(@PathVariable Long id){
+		OrdemServico obj = service.findById(id);
+		return ResponseEntity.ok().body(obj);
+	}
+	
 }
 
