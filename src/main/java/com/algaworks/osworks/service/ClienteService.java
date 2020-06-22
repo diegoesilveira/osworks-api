@@ -19,6 +19,7 @@ public class ClienteService {
 	private ClienteRepository repository;
 
 	public Cliente insert(Cliente cliente) {
+			
 		cliente.setId(null);
 		return repository.save(cliente);
 
@@ -35,6 +36,7 @@ public class ClienteService {
 				"Cliente não encontrado! Id: " + id + ", Tipo: " + Cliente.class.getName()));
 	}
 
+		
 	public void delete(Long id) {
 		try {
 
@@ -45,5 +47,7 @@ public class ClienteService {
 					"Não é possível excluir, cliente vinculado a Ordem de Serviço. " + " ID: " + id);
 		}
 	}
+	
+	
 
 }

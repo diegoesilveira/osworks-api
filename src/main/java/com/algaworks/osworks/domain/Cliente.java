@@ -1,32 +1,38 @@
 package com.algaworks.osworks.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.springframework.format.annotation.NumberFormat;
+import com.algaworks.osworks.service.validation.ValidationGroups;
 
 @Entity
-public class Cliente {
+public class Cliente implements Serializable{
 
+	private static final long serialVersionUID = 1L;
+
+	@NotNull(groups = ValidationGroups.ClienteId.class)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Size(min = 3, max = 60)
-	@NotNull(message = "Favor preencher o campo nome")
+	@NotEmpty(message="Preenchimento obrigatório")
 	private String nome;
 
 	@Size(min = 11, max = 20)
-	@NotNull(message = "Favor preencher o campo Telefone")
+	@NotEmpty(message="Preenchimento obrigatório")
 	private String telefone;
 
-	@Email(message = "Favor preencher email corretamente")
+	@Email(message="Email inválido")
+	@NotEmpty(message="Preenchimento obrigatório")
 	private String email;
 
 	public Cliente() {
