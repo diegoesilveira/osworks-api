@@ -11,10 +11,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.algaworks.osworks.DTO.OrdemServicoDTO;
+import com.algaworks.osworks.DTO.OrdemServicoInsertDTO;
 import com.algaworks.osworks.domain.Cliente;
+import com.algaworks.osworks.domain.Comentario;
 import com.algaworks.osworks.domain.OrdemServico;
 import com.algaworks.osworks.domain.StatusOrdemServico;
 import com.algaworks.osworks.repositories.ClienteRepository;
+import com.algaworks.osworks.repositories.ComentarioRepository;
 import com.algaworks.osworks.repositories.OrdemServicoRepository;
 import com.algaworks.osworks.service.exception.ObjectNotFoundException;
 
@@ -28,6 +31,9 @@ public class OrdemServicoService {
 	
 	@Autowired
 	private ClienteRepository clienteRepository;
+	
+	@Autowired
+	private ComentarioRepository ComentarioRepository;
 	
 	@Autowired
 	private ModelMapper modelMapper;
@@ -44,6 +50,18 @@ public class OrdemServicoService {
 		return repository.save(ordemServico);
 	}
 	
+	public Comentario adicionarComentario(Long ordemServicoId,String descricao) {
+		
+		findById(ordemServicoId);
+		
+		Comentario comentario = new Comentario();
+		comentario.setDescricao(descricao);
+		comentario.setDataEnvio(OffsetDateTime.now());
+		comentario.setOrdemServico(findById(ordemServicoId));
+		return ComentarioRepository.save(comentario);
+	}
+	
+			
 	public List<OrdemServicoDTO> findAllModel(){
 		return toCollectionModel(repository.findAll());
 		

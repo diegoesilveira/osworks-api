@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -12,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -53,6 +56,9 @@ public class OrdemServico implements Serializable {
 
 	@JsonProperty(access = Access.READ_ONLY)
 	private OffsetDateTime dataFinalizacao;
+	
+	@OneToMany(mappedBy = "ordemServico")
+	private List<Comentario> comentatios = new ArrayList<>();
 
 	public OrdemServico() {
 	}
@@ -122,6 +128,17 @@ public class OrdemServico implements Serializable {
 
 	public void setDataFinalizacao(OffsetDateTime dataFinalizacao) {
 		this.dataFinalizacao = dataFinalizacao;
+	}
+	
+	
+	
+
+	public List<Comentario> getComentatios() {
+		return comentatios;
+	}
+
+	public void setComentatios(List<Comentario> comentatios) {
+		this.comentatios = comentatios;
 	}
 
 	@Override

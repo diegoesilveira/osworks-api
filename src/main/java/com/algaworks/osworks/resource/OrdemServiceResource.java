@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.algaworks.osworks.DTO.OrdemServicoDTO;
+import com.algaworks.osworks.DTO.OrdemServicoInsertDTO;
 import com.algaworks.osworks.domain.OrdemServico;
 import com.algaworks.osworks.service.OrdemServicoService;
 
@@ -35,6 +36,15 @@ public class OrdemServiceResource {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(ordemServico.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
+	
+	
+	
+//	@RequestMapping(value="/DTO", method = RequestMethod.POST)
+//	public ResponseEntity<Void> insertModel(@RequestBody @Valid OrdemServicoInsertDTO ordemServicoInsert) {
+//		ordemServicoInsert = service.criar(ordemServicoInsert);
+//		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(ordemServico.getClass()).toUri();
+//		return ResponseEntity.created(uri).build();
+//	}
 	
 	
 	
