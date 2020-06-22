@@ -32,8 +32,7 @@ public class OrdemServicoService {
 	@Autowired
 	private ModelMapper modelMapper;
 	
-	
-	
+		
 	public OrdemServico criar(OrdemServico ordemServico) {
 		Cliente cliente = clienteRepository.findById(ordemServico.getCliente().getId())
 				.orElseThrow(() -> new ObjectNotFoundException("Cliente não encontrado!"));

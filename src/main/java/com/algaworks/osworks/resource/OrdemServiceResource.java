@@ -36,6 +36,8 @@ public class OrdemServiceResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
+	
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<OrdemServico>> findAll(){
 		List<OrdemServico> list = service.findAll();
