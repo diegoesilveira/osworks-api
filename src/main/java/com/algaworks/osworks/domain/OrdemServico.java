@@ -3,6 +3,7 @@ package com.algaworks.osworks.domain;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -48,16 +49,16 @@ public class OrdemServico implements Serializable {
 	private StatusOrdemServico status;
 
 	@JsonProperty(access = Access.READ_ONLY)
-	private LocalDateTime dataAbertura;
+	private OffsetDateTime dataAbertura;
 
 	@JsonProperty(access = Access.READ_ONLY)
-	private LocalDateTime dataFinalizacao;
+	private OffsetDateTime dataFinalizacao;
 
 	public OrdemServico() {
 	}
 
 	public OrdemServico(Long id, Cliente cliente, String descricao, BigDecimal preco, StatusOrdemServico status,
-			LocalDateTime dataAbertura, LocalDateTime dataFinalizacao) {
+			OffsetDateTime dataAbertura, OffsetDateTime dataFinalizacao) {
 		this.id = id;
 		this.cliente = cliente;
 		this.descricao = descricao;
@@ -107,19 +108,19 @@ public class OrdemServico implements Serializable {
 		this.status = status;
 	}
 
-	public LocalDateTime getDataAbertura() {
+	public OffsetDateTime getDataAbertura() {
 		return dataAbertura;
 	}
 
-	public void setDataAbertura(LocalDateTime dataAbertura) {
+	public void setDataAbertura(OffsetDateTime dataAbertura) {
 		this.dataAbertura = dataAbertura;
 	}
 
-	public LocalDateTime getDataFinalizacao() {
+	public OffsetDateTime getDataFinalizacao() {
 		return dataFinalizacao;
 	}
 
-	public void setDataFinalizacao(LocalDateTime dataFinalizacao) {
+	public void setDataFinalizacao(OffsetDateTime dataFinalizacao) {
 		this.dataFinalizacao = dataFinalizacao;
 	}
 

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.algaworks.osworks.DTO.OrdemServicoDTO;
 import com.algaworks.osworks.domain.OrdemServico;
 import com.algaworks.osworks.service.OrdemServicoService;
 
@@ -26,8 +27,7 @@ public class OrdemServiceResource {
 	@Autowired
 	private OrdemServicoService service;
 	
-	@Autowired
-	private ModelMapper modelMapper;
+	
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@RequestBody @Valid OrdemServico ordemServico) {
@@ -42,9 +42,22 @@ public class OrdemServiceResource {
 		return ResponseEntity.ok().body(list);
 	}
 	
+	@RequestMapping(value="/DTO", method = RequestMethod.GET)
+	public ResponseEntity<List<OrdemServicoDTO>> findAllModel(){
+		List<OrdemServicoDTO> list = service.findAllModel();
+		return ResponseEntity.ok().body(list);
+	}
+	
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
 	public ResponseEntity<OrdemServico> findById(@PathVariable Long id){
 		OrdemServico obj = service.findById(id);
+		return ResponseEntity.ok().body(obj);
+	}
+	
+	//Model Mapper
+	@RequestMapping(value="/DTO/{id}", method = RequestMethod.GET)
+	public ResponseEntity<OrdemServicoDTO> findByIdMapper(@PathVariable Long id){
+		OrdemServicoDTO obj = service.findByIdModel(id);
 		return ResponseEntity.ok().body(obj);
 	}
 	
