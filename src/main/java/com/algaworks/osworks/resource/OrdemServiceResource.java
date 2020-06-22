@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
@@ -24,6 +25,9 @@ public class OrdemServiceResource {
 
 	@Autowired
 	private OrdemServicoService service;
+	
+	@Autowired
+	private ModelMapper modelMapper;
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@RequestBody @Valid OrdemServico ordemServico) {
