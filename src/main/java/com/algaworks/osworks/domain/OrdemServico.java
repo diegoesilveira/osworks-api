@@ -23,6 +23,7 @@ import javax.validation.groups.ConvertGroup;
 import javax.validation.groups.Default;
 
 import com.algaworks.osworks.service.validation.ValidationGroups;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -57,6 +58,7 @@ public class OrdemServico implements Serializable {
 	@JsonProperty(access = Access.READ_ONLY)
 	private OffsetDateTime dataFinalizacao;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "ordemServico")
 	private List<Comentario> comentatios = new ArrayList<>();
 
